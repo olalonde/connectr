@@ -1,0 +1,20 @@
+{
+  "name": "connectr",
+  "version": "0.0.1",
+  "description": "Connect wrapper that adds ability to insert middleware at arbitrary positions.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "connect",
+    "express"
+  ],
+  "author": "Olivier Lalonde <olalonde@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "connect": "~2.7.9",
+    "debug": "~0.7.2"
+  }
+}
