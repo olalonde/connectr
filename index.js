@@ -85,6 +85,19 @@ Connectr.prototype.use = function (route, fn) {
   return this;
 };
 
+/**
+ * Removes middleware labeled `label`
+ *
+ * @param {String} label
+ */
+Connectr.prototype.remove = function (label) {
+  for (var i = 0; i < this.app.stack.length; i++) {
+    if (this.app.stack[i].handle.label === label) {
+      this.app.stack.splice(i, 1);
+    }
+  }
+};
+
 Connectr.prototype.as = function (label) {
   try {
     this.currentFn.label = label;

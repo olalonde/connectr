@@ -12,9 +12,17 @@ before or after middlewares that already part of the stack.
 ```javascript
 var connectr = require('connectr')(app);
 
+// Add labeled middleware
 connectr.use(middleware).as(label);
+
+// Insert before middleware
 connectr.before(label).use(middleware).as(label);
+
+// Insert after middleware
 connectr.after(label).use(middleware);
+
+// Remove middleware
+connectr.remove(label);
 
 // the .as, .before and .after calls are optional
 ```
