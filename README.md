@@ -10,6 +10,8 @@ before or after middlewares that already part of the stack.
 # Usage
 
 ```javascript
+var connectr = require('connectr')(app);
+
 connectr.use(middleware).as(label);
 connectr.before(label).use(middleware).as(label);
 connectr.after(label).use(middleware);
