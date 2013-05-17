@@ -4,21 +4,24 @@ var connect = require('connect'),
 var static = connect.static('public');
 static.label = 'static';
 
+var app = connect();
+var connectr = require('./')(app);
+
 var cookieParser = connect.cookieParser();
 cookieParser.label = 'cookieParser';
 
-var app = connect()
-  .use(connect.favicon())
-  .use(connect.logger('dev'))
-  .use(static)
-  .use(connect.directory('public'))
+app.use(connect.favicon())
+  .use(static);
+
+connectr.use(connect.bodyParser).as('bodyParser')
+  .use(connect.directory('public')).as('directory')
   .use(cookieParser)
-  .use(connect.session({ secret: 'my secret here' }))
-  .use(function(req, res){
+  .use(connect.session({ secret: 'my secret here' }));
+
+app.use(function(req, res){
     res.end('Hello from Connect!\n');
   });
 
-var connectr = require('./')(app);
 
 //connectr.use(connect.bodyParser).as('bodyParser');
 // use `as` only if connect.bodyParser doesn't have a label property

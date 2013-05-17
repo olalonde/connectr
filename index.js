@@ -53,7 +53,7 @@ Connectr.prototype.use = function (route, fn) {
         }
 
         var label = handle[position];
-        console.log(label);
+        //console.log(label);
 
         for (var j = 0; j < stack.length; j++) {
           if (stack[j].handle.label === label) {
@@ -80,7 +80,9 @@ Connectr.prototype.use = function (route, fn) {
     return true;
   }
 
-  return order_stack(this.app.stack);
+  order_stack(this.app.stack);
+
+  return this;
 };
 
 Connectr.prototype.as = function (label) {

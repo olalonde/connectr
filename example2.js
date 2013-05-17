@@ -1,15 +1,7 @@
-# Connectr for Connect (Node.js)
-
-Connectr complements Connect by allowing the insertion of middleware
-before or after middlewares that already part of the stack.
-
-# Usage 
-
-```javascript 
 var http = require('http'),
   connect = require('connect'),
   app = connect(),
-  connectr = require('connectr')(app);
+  connectr = require('./')(app);
 
 var cookieParser = connect.cookieParser();
 
@@ -56,5 +48,3 @@ connectr.after('bodyParser').use(function (req, res, next) {
 //console.log(app.stack);
 
 http.createServer(app).listen(3000);
-```
-
