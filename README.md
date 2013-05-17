@@ -1,6 +1,6 @@
-# Connectr for Connect (Node.js)
+# Connectr for [Connect](https://github.com/senchalabs/connect) (Node.js)
 
-Connectr complements Connect by allowing the insertion of middleware
+Connectr complements [Connect](https://github.com/senchalabs/connect) by allowing the insertion of middleware
 before or after middlewares that already part of the stack.
 
 # Install
