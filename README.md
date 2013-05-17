@@ -7,7 +7,35 @@ before or after middlewares that already part of the stack.
 
     npm install connectr
 
-# Usage 
+# Usage
+
+```javascript
+connectr.use(middleware).as(label);
+connectr.before(label).use(middleware).as(label);
+connectr.after(label).use(middleware);
+
+// the .as, .before and .after calls are optional
+```
+
+# Simple Example
+
+```javascript
+var connect = require('connect'),
+var app = connect();
+var connectr = require('connectr')(app);
+
+connectr.use(connect.cookieParser).as('cookieParser');
+
+/* ... */
+
+connectr.before('cookieParser').use(function (req, res, next) {
+  console.log('Before cookie parser...');
+  next();
+}).as('log before cookie parser');
+
+```
+
+# Kitchen Sink Example 
 
 ```javascript 
 var http = require('http'),
