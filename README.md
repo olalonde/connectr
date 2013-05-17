@@ -3,6 +3,10 @@
 Connectr complements Connect by allowing the insertion of middleware
 before or after middlewares that already part of the stack.
 
+# Install
+
+    npm install connectr
+
 # Usage 
 
 ```javascript 
