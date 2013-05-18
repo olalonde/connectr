@@ -1,7 +1,7 @@
 # Connectr for [Connect](https://github.com/senchalabs/connect) (Node.js)
 
-Connectr complements [Connect](https://github.com/senchalabs/connect) by allowing the insertion of middleware
-before or after middlewares that already part of the stack.
+Connectr is a layer on top of [Connect](https://github.com/senchalabs/connect) that allows the insertion/removal of middlewares
+after the stack has been built.
 
 # Install
 
