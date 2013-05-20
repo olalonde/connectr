@@ -25,6 +25,8 @@ connectr.after(label).use(middleware);
 connectr.remove(label);
 
 // the .as, .before and .after calls are optional
+
+// have a problem? try console.log(app.stack)
 ```
 
 # Simple Example
