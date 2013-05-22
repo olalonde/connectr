@@ -25,11 +25,14 @@ Connectr.prototype.use = function (route, fn) {
   this.currentFn = fn;
 
   // save before/after as properties attached to the fn
+  if (this._first)
+    fn._first = true;
   if (this._before)
     fn._before = this._before;
   if (this._after)
     fn._after = this._after;
 
+  delete this._first;
   delete this._before;
   delete this._after;
 
@@ -44,7 +47,21 @@ Connectr.prototype.use = function (route, fn) {
     // Find a handle with a before or after property
     for (var i = 0; i < stack.length; i++) {
       var handle = stack[i].handle;
-      if (handle._before || handle._after) {
+      if (handle._first) {
+        // remove handle from current position
+        stack.splice(i, 1);
+        // insert it at begining of stack
+        stack.unshift(handle);
+
+        // remove property so we don't order it again later
+        delete handle._first;
+        // for debugging
+        handle['_moved_first'] = true;
+
+        // Continue ordering for remaining handles
+        return order_stack (stack);
+      }
+      else if (handle._before || handle._after) {
         if (handle._before) {
           var position = '_before';
         }
@@ -107,6 +124,13 @@ Connectr.prototype.as = function (label) {
     throw new Error('.as() must be used after the .use() call.');
   }
 };
+
+/**
+ * Adds a middleware at the beginning of the stack
+ */
+Connectr.prototype.first = function () {
+  this._first = true;
+}
 
 Connectr.prototype.before = function (label) {
   this._before = label;

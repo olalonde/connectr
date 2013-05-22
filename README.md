@@ -21,6 +21,9 @@ connectr.before(label).use(middleware).as(label);
 // Insert after middleware
 connectr.after(label).use(middleware);
 
+// Insert at beginning of stack
+connectr.first().use(middleware);
+
 // Remove middleware
 connectr.remove(label);
 
