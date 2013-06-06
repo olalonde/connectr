@@ -27,6 +27,9 @@ connectr.first().use(middleware);
 // Remove middleware
 connectr.remove(label);
 
+// Assign a label to middleware already in the stack
+connectr.index(i).as(label);
+
 // the .as, .before and .after calls are optional
 
 // have a problem? try console.log(app.stack)

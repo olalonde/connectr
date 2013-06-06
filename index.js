@@ -115,6 +115,11 @@ Connectr.prototype.remove = function (label) {
   }
 };
 
+Connectr.prototype.index = function (index) {
+  this.currentFn = this.app.stack[i].handle;
+  return this;
+};
+
 Connectr.prototype.as = function (label) {
   try {
     this.currentFn.label = label;
