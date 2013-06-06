@@ -17,6 +17,13 @@ var connectr = require('connectr')(app);
 // Add labeled middleware
 connectr.use(middleware).as(label);
 
+// Label middleware which is at a specific position on the stack
+// This should be used only if you don't have access to the code
+// that builds the stack.
+//
+// Tip: use `app.stack` to inspect the stack
+connectr.index(index).as(label);
+
 // Insert before middleware
 connectr.before(label).use(middleware).as(label);
 
