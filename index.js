@@ -49,9 +49,9 @@ Connectr.prototype.use = function (route, fn) {
       var handle = stack[i].handle;
       if (handle._first) {
         // remove handle from current position
-        stack.splice(i, 1);
+        var mid = stack.splice(i, 1)[0];
         // insert it at begining of stack
-        stack.unshift(handle);
+        stack.unshift(mid);
 
         // remove property so we don't order it again later
         delete handle._first;
@@ -130,7 +130,8 @@ Connectr.prototype.as = function (label) {
  */
 Connectr.prototype.first = function () {
   this._first = true;
-}
+  return this;
+};
 
 Connectr.prototype.before = function (label) {
   this._before = label;
