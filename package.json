@@ -15,7 +15,9 @@
   "author": "Olivier Lalonde <olalonde@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "connect": "~2.7.9",
     "debug": "~0.7.2"
+  },
+  "devDependencies": {
+      "connect": "~2.7.9"
   }
 }
