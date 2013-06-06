@@ -3,11 +3,11 @@
 Connectr is a layer on top of [Connect](https://github.com/senchalabs/connect) that allows the insertion/removal of middlewares
 after the stack has been built.
 
-# Install
+## Install
 
     npm install connectr
 
-# Usage
+## Usage
 
 ```javascript
 var connectr = require('connectr')(app);
@@ -32,7 +32,7 @@ connectr.remove(label);
 // have a problem? try console.log(app.stack)
 ```
 
-# Simple Example
+## Simple Example
 
 ```javascript
 var connect = require('connect'),
@@ -50,7 +50,7 @@ connectr.before('cookieParser').use(function (req, res, next) {
 
 ```
 
-# Kitchen Sink Example 
+## Kitchen Sink Example 
 
 ```javascript 
 var http = require('http'),
@@ -105,3 +105,6 @@ connectr.after('bodyParser').use(function (req, res, next) {
 http.createServer(app).listen(3000);
 ```
 
+## License
+
+MIT: [http://olalonde.mit-license.org](http://olalonde.mit-license.org)
