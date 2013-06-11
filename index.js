@@ -4,6 +4,27 @@ module.exports = function (app) {
   return new Connectr(app);
 };
 
+var merge = function(a, b){
+  if (a && b) {
+    for (var key in b) {
+      a[key] = b[key];
+    }
+  }
+  return a;
+};
+
+module.exports.patch = function (app) {
+  if (app._use) 
+    throw new Error('This app is already patched by Connectr.');
+
+  app._use = app.use;
+  app.app = app;
+
+  app = merge(app, Connectr.prototype);
+
+  return app;
+};
+
 var Connectr = function (app) {
   this.app = app;
 };
@@ -37,8 +58,10 @@ Connectr.prototype.use = function (route, fn) {
   delete this._after;
 
   // forward call to app.use
-  this.app.use.apply(this.app, arguments);
-
+  if (this.app._use)
+    this.app._use.apply(this.app, arguments);
+  else
+    this.app.use.apply(this.app, arguments);
 
   // lookup connect.stack if there is a fn with before or after properties
   // and move it at right place
@@ -113,6 +136,7 @@ Connectr.prototype.remove = function (label) {
       this.app.stack.splice(i, 1);
     }
   }
+  return this;
 };
 
 Connectr.prototype.index = function (index) {
@@ -126,7 +150,7 @@ Connectr.prototype.as = function (label) {
     return this;
   }
   catch (e) {
-    throw new Error('.as() must be used after the .use() call.');
+    throw new Error('.as() must be used after a .use() call.');
   }
 };
 

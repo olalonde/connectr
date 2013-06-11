@@ -14,6 +14,9 @@ after the stack has been built.
 ```javascript
 var connectr = require('connectr')(app);
 
+// you can also monkey patch app directly:
+// app = require('connectr').patch(app)
+
 // Add labeled middleware
 connectr.use(middleware).as(label);
 
