@@ -140,7 +140,7 @@ Connectr.prototype.remove = function (label) {
 };
 
 Connectr.prototype.index = function (index) {
-  this.currentFn = this.app.stack[i].handle;
+  this.currentFn = this.app.stack[index].handle;
   return this;
 };
 
