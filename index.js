@@ -27,6 +27,11 @@ module.exports.patch = function (app) {
 
 var Connectr = function (app) {
   this.app = app;
+  this.stack = this.app.stack || (this.app._router? this.app._router.stack : null);
+  
+  if(!this.stack) {
+    throw new Error('Cannot find stack');
+  }
 };
 
 Connectr.prototype.use = function (route, fn) {
@@ -120,7 +125,7 @@ Connectr.prototype.use = function (route, fn) {
     return true;
   }
 
-  order_stack(this.app.stack);
+  order_stack(this.stack);
 
   return this;
 };
@@ -131,16 +136,16 @@ Connectr.prototype.use = function (route, fn) {
  * @param {String} label
  */
 Connectr.prototype.remove = function (label) {
-  for (var i = 0; i < this.app.stack.length; i++) {
-    if (this.app.stack[i].handle.label === label) {
-      this.app.stack.splice(i, 1);
+  for (var i = 0; i < this.stack.length; i++) {
+    if (this.stack[i].handle.label === label) {
+      this.stack.splice(i, 1);
     }
   }
   return this;
 };
 
 Connectr.prototype.index = function (index) {
-  this.currentFn = this.app.stack[index].handle;
+  this.currentFn = this.stack[index].handle;
   return this;
 };
 
