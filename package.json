@@ -1,6 +1,6 @@
 {
   "name": "connectr",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Connect wrapper that adds ability to insert middleware at arbitrary positions.\"",
   "main": "index.js",
   "scripts": {
