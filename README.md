@@ -3,7 +3,11 @@
 [![NPM version](https://badge.fury.io/js/connectr.png)](http://badge.fury.io/js/connectr)
 
 Connectr is a layer on top of [Connect](https://github.com/senchalabs/connect) that allows the insertion/removal of middlewares
-after the stack has been built. This is especially useful when you don't have access to the code that sets up your Connect stack (a third party module for example). 
+after the stack has been built. This is especially useful when you don't
+have access to the code that sets up your Connect stack (a third party
+module for example).
+
+This module also supports Express.
 
 ## Install
 
