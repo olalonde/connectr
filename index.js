@@ -13,9 +13,20 @@ var merge = function(a, b){
   return a;
 };
 
+var stack = function(app) {
+  var stack = app.stack || (app._router? app._router.stack : null);
+
+  if (!stack) {
+    throw new Error('Cannot find stack');
+  }
+
+  return stack;
+};
+
 module.exports.patch = function (app) {
-  if (app._use) 
+  if (app._use) {
     throw new Error('This app is already patched by Connectr.');
+  }
 
   app._use = app.use;
   app.app = app;
@@ -27,11 +38,6 @@ module.exports.patch = function (app) {
 
 var Connectr = function (app) {
   this.app = app;
-  this.stack = this.app.stack || (this.app._router? this.app._router.stack : null);
-  
-  if(!this.stack) {
-    throw new Error('Cannot find stack');
-  }
 };
 
 Connectr.prototype.use = function (route, fn) {
@@ -84,21 +90,21 @@ Connectr.prototype.use = function (route, fn) {
         // remove property so we don't order it again later
         delete handle._first;
         // for debugging
-        handle['_moved_first'] = true;
+        handle._moved_first = true;
 
         // Continue ordering for remaining handles
         return order_stack (stack);
       }
       else if (handle._before || handle._after) {
+        var position = null;
         if (handle._before) {
-          var position = '_before';
+          position = '_before';
         }
         else if (handle._after) {
-          var position = '_after';
+          position = '_after';
         }
 
         var label = handle[position];
-        //console.log(label);
 
         for (var j = 0; j < stack.length; j++) {
           if (stack[j].handle.label === label) {
@@ -125,7 +131,7 @@ Connectr.prototype.use = function (route, fn) {
     return true;
   }
 
-  order_stack(this.stack);
+  order_stack(stack(this));
 
   return this;
 };
