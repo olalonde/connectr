@@ -1,6 +1,6 @@
 {
   "name": "connectr",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Connect wrapper that adds ability to insert middleware at arbitrary positions.\"",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,12 @@
     "express"
   ],
   "author": "Olivier Lalonde <olalonde@gmail.com>",
+  "contributors": [
+    {
+      "name": "Michael Robinson",
+      "email": "mike@pagesofinterest.net"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "debug": "~0.7.2"
