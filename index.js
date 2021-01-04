@@ -13,8 +13,12 @@ var merge = function(a, b){
   return a;
 };
 
-var stack = function(app) {
-  var stack = app.stack || (app._router? app._router.stack : null);
+var stack = function(connectr) {
+  var stack = connectr.stack || (connectr._router? connectr._router.stack : null);
+
+  if (!stack) {
+    stack = connectr.app.stack || (connectr.app._router? connectr.app._router.stack : null);
+  }
 
   if (!stack) {
     throw new Error('Cannot find stack');
